@@ -6,9 +6,14 @@
 // its use by other parties, and makes no guarantees, expressed or implied,
 // about its quality, reliability, or any other characteristic.
 
+#import "AFHTTPClient.h"
+#import "BWSMixedReplaceHTTPRequestOperation.h"
+
 #import "BWSViewController.h"
 
 @interface BWSViewController ()
+
+@property (nonatomic, strong) BWSMixedReplaceHTTPRequestOperation *operation;
 
 @end
 
@@ -23,7 +28,18 @@
 
 - (void)startStreaming
 {
+    self.operation =
+    [BWSMixedReplaceHTTPRequestOperation mixedReplaceOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8800"]]
+                                                      replacementReceived:^(NSData *data) {
+                                                          [self.webView loadHTMLString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] baseURL:[NSURL URLWithString:@""]];
+                                                      } success:^(NSURLRequest *request, NSURLResponse *response) {
+                                                          NSLog(@"Stream complete.");
+                                                      } failure:^(NSURLRequest *request, NSError *error) {
+                                                          NSLog(@"%@", error.description);
+                                                      }
+     ];
     
+    [self.operation start];
 }
 
 @end
