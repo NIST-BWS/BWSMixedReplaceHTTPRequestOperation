@@ -90,8 +90,6 @@
 		082F5D261709E1FD0032D463 = {
 			isa = PBXGroup;
 			children = (
-				082F5DC11709E3A00032D463 /* SystemConfiguration.framework */,
-				082F5DBF1709E39B0032D463 /* MobileCoreServices.framework */,
 				082F5D381709E1FD0032D463 /* BWSMixedReplaceDemo */,
 				082F5D311709E1FD0032D463 /* Frameworks */,
 				082F5D301709E1FD0032D463 /* Products */,
@@ -109,6 +107,8 @@
 		082F5D311709E1FD0032D463 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				082F5DC11709E3A00032D463 /* SystemConfiguration.framework */,
+				082F5DBF1709E39B0032D463 /* MobileCoreServices.framework */,
 				082F5D321709E1FD0032D463 /* UIKit.framework */,
 				082F5D341709E1FD0032D463 /* Foundation.framework */,
 				082F5D361709E1FD0032D463 /* CoreGraphics.framework */,
