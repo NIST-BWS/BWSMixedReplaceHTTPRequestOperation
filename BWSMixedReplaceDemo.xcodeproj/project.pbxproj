@@ -29,6 +29,7 @@
 		082F5DA01709E2A10032D463 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 082F5D6A1709E2A10032D463 /* UIImageView+AFNetworking.m */; };
 		082F5DC01709E39B0032D463 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082F5DBF1709E39B0032D463 /* MobileCoreServices.framework */; };
 		082F5DC21709E3A00032D463 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082F5DC11709E3A00032D463 /* SystemConfiguration.framework */; };
+		082F5DD01709FBFD0032D463 /* BWSMixedReplaceHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 082F5DCF1709FBFD0032D463 /* BWSMixedReplaceHTTPRequestOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,8 @@
 		082F5D6A1709E2A10032D463 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		082F5DBF1709E39B0032D463 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		082F5DC11709E3A00032D463 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		082F5DCE1709FBFD0032D463 /* BWSMixedReplaceHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWSMixedReplaceHTTPRequestOperation.h; path = BWSMixedReplaceHTTPRequestOperation/BWSMixedReplaceHTTPRequestOperation.h; sourceTree = SOURCE_ROOT; };
+		082F5DCF1709FBFD0032D463 /* BWSMixedReplaceHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWSMixedReplaceHTTPRequestOperation.m; path = BWSMixedReplaceHTTPRequestOperation/BWSMixedReplaceHTTPRequestOperation.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,7 @@
 		082F5D381709E1FD0032D463 /* BWSMixedReplaceDemo */ = {
 			isa = PBXGroup;
 			children = (
+				082F5DC71709E48E0032D463 /* BWSMixedReplaceHTTPRequestOperation */,
 				082F5D411709E1FD0032D463 /* BWSAppDelegate.h */,
 				082F5D421709E1FD0032D463 /* BWSAppDelegate.m */,
 				082F5D4A1709E1FE0032D463 /* BWSViewController.h */,
@@ -169,6 +173,15 @@
 			);
 			name = AFNetworking;
 			path = AFNetworking/AFNetworking;
+			sourceTree = "<group>";
+		};
+		082F5DC71709E48E0032D463 /* BWSMixedReplaceHTTPRequestOperation */ = {
+			isa = PBXGroup;
+			children = (
+				082F5DCE1709FBFD0032D463 /* BWSMixedReplaceHTTPRequestOperation.h */,
+				082F5DCF1709FBFD0032D463 /* BWSMixedReplaceHTTPRequestOperation.m */,
+			);
+			path = BWSMixedReplaceHTTPRequestOperation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +263,7 @@
 				082F5D9E1709E2A10032D463 /* AFURLConnectionOperation.m in Sources */,
 				082F5D9F1709E2A10032D463 /* AFXMLRequestOperation.m in Sources */,
 				082F5DA01709E2A10032D463 /* UIImageView+AFNetworking.m in Sources */,
+				082F5DD01709FBFD0032D463 /* BWSMixedReplaceHTTPRequestOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +386,7 @@
 				082F5D541709E1FE0032D463 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
