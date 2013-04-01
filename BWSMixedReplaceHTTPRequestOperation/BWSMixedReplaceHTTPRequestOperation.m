@@ -26,65 +26,65 @@ static NSString * const kBWSMixedReplaceHTTPRequestOperationMIMEType = @"multipa
                                          success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response))success
                                          failure:(void (^)(NSURLRequest *request, NSError *error))failure
 {
-    BWSMixedReplaceHTTPRequestOperation *operation = [[BWSMixedReplaceHTTPRequestOperation alloc] initWithRequest:request];
-    
-    [operation setReplace:replace];
-	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if (success != nil)
-            success(operation.request, operation.response);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failure != nil)
-            failure(operation.request, error);
-    }];
+	BWSMixedReplaceHTTPRequestOperation *operation = [[BWSMixedReplaceHTTPRequestOperation alloc] initWithRequest:request];
 
-    return (operation);
+	[operation setReplace:replace];
+	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+		if (success != nil)
+			success(operation.request, operation.response);
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (failure != nil)
+			failure(operation.request, error);
+	}];
+
+	return (operation);
 }
 
 #pragma mark - Override NSURLConnectionDelegate
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    [super connection:connection didReceiveResponse:response];
+	[super connection:connection didReceiveResponse:response];
 
-    // No Content-Size header field on multipart/x-mixed-replace transmission
-    static BOOL firstTime = YES;
-    if (firstTime) {
-        if (![response.MIMEType isEqualToString:kBWSMixedReplaceHTTPRequestOperationMIMEType]) {
-            NSLog(@"Expected MIME type of %@, got %@.", kBWSMixedReplaceHTTPRequestOperationMIMEType, response.MIMEType);
-            [self cancel];
-	        return;
-        }
+	// No Content-Size header field on multipart/x-mixed-replace transmission
+	static BOOL firstTime = YES;
+	if (firstTime) {
+		if (![response.MIMEType isEqualToString:kBWSMixedReplaceHTTPRequestOperationMIMEType]) {
+			NSLog(@"Expected MIME type of %@, got %@.", kBWSMixedReplaceHTTPRequestOperationMIMEType, response.MIMEType);
+			[self cancel];
+			return;
+		}
 
-        firstTime = NO;
-    }
+		firstTime = NO;
+	}
 
-    // Content-Length not strictly required, but abide if provided
-    if (response.expectedContentLength != NSURLResponseUnknownLength) {
-        self.useContentLength = YES;
-	    self.multipartExpectedSize = response.expectedContentLength;
-    	self.multipartData = [[NSMutableData alloc] initWithCapacity:self.multipartExpectedSize];
-    } else {
-        self.useContentLength = NO;
-        
+	// Content-Length not strictly required, but abide if provided
+	if (response.expectedContentLength != NSURLResponseUnknownLength) {
+		self.useContentLength = YES;
+		self.multipartExpectedSize = response.expectedContentLength;
+		self.multipartData = [[NSMutableData alloc] initWithCapacity:self.multipartExpectedSize];
+	} else {
+		self.useContentLength = NO;
+
 		if ((self.multipartData != nil) && (self.replace != nil))
-        	self.replace(self.multipartData);
+			self.replace(self.multipartData);
 
-        // Reset data
-        self.multipartData = [[NSMutableData alloc] init];
-    }
+		// Reset data
+		self.multipartData = [[NSMutableData alloc] init];
+	}
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    [super connection:connection didReceiveData:data];
+	[super connection:connection didReceiveData:data];
 
-    [self.multipartData appendData:data];
+	[self.multipartData appendData:data];
 
-    // Callback once all of the data has been received when using Content-Length
-    if (self.useContentLength)
-	    if ([self.multipartData length] == self.multipartExpectedSize)
-	        if (self.replace != nil)
-    	        self.replace(self.multipartData);
+	// Callback once all of the data has been received when using Content-Length
+	if (self.useContentLength)
+		if ([self.multipartData length] == self.multipartExpectedSize)
+			if (self.replace != nil)
+				self.replace(self.multipartData);
 }
 
 @end

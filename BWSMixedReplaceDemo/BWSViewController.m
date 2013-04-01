@@ -21,25 +21,25 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+	[super viewDidLoad];
 
 	[self startStreaming];
 }
 
 - (void)startStreaming
 {
-    self.operation =
-    [BWSMixedReplaceHTTPRequestOperation mixedReplaceOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8800"]]
-                                                      replacementReceived:^(NSData *data) {
-                                                          [self.webView loadHTMLString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] baseURL:[NSURL URLWithString:@""]];
-                                                      } success:^(NSURLRequest *request, NSURLResponse *response) {
-                                                          NSLog(@"Stream complete.");
-                                                      } failure:^(NSURLRequest *request, NSError *error) {
-                                                          NSLog(@"%@", error.description);
-                                                      }
-     ];
-    
-    [self.operation start];
+	self.operation =
+	[BWSMixedReplaceHTTPRequestOperation mixedReplaceOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8800"]]
+							  replacementReceived:^(NSData *data) {
+								  [self.webView loadHTMLString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] baseURL:[NSURL URLWithString:@""]];
+							  } success:^(NSURLRequest *request, NSURLResponse *response) {
+								  NSLog(@"Stream complete.");
+							  } failure:^(NSURLRequest *request, NSError *error) {
+								  NSLog(@"%@", error.description);
+							  }
+	 ];
+
+	[self.operation start];
 }
 
 @end
