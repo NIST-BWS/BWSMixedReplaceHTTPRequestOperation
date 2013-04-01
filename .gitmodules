@@ -1,3 +1,6 @@
 [submodule "Multipart-Streaming-HTTP-Server"]
 	path = Multipart-Streaming-HTTP-Server
 	url = git://github.com/hsjunnesson/Multipart-Streaming-HTTP-Server.git
+[submodule "AFNetworking"]
+	path = AFNetworking
+	url = https://github.com/AFNetworking/AFNetworking
