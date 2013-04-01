@@ -10,4 +10,6 @@
 
 @interface BWSViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
 @end
