@@ -1,0 +1,3 @@
+[submodule "Multipart-Streaming-HTTP-Server"]
+	path = Multipart-Streaming-HTTP-Server
+	url = git://github.com/hsjunnesson/Multipart-Streaming-HTTP-Server.git
